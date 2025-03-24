@@ -1,0 +1,204 @@
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #1e1e2e;
+    color: #ddd;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+    margin-top: 100px;
+}
+
+.dark-mode {
+    background-color: #000000;
+    color: #fff;
+}
+
+button {
+    background: linear-gradient(45deg, #7b2cbf, #5a86d8);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #5a86d8, #7b2cbf);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#quote {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+#planet-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 90px;
+    padding: 20px;
+}
+
+.card {
+    margin-top: 80px;
+    width: 160px;
+    height: 240px;
+    background-color: #29294b;
+    border: solid 2px #7b2cbf;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    background-color: #5a86d8;
+}
+
+.card img {
+    margin-top: 40px;
+    width: 150px;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #f4b400;
+}
+
+.card p {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: #ccc;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#random-quote {
+    margin-top: 10px;
+}
+
+#cosmos {
+    width: 100%;
+    height: 600px;
+}
+
+.planet-img {
+    width: 50px;
+    height: 100px;
+}
+
+
+/* body 
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+header{
+    height: 200px;
+}
+
+main{
+    height: 400px;
+
+}
+
+footer{
+    height: 200px;
+}
+
+.dark-mode {
+    background-color: #222;
+    color: white;
+}
+
+#planet-list{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card {
+    width: 100px;
+    height: 200px;
+    background-color: antiquewhite;
+    border:solid 1px #a26363;
+    border-radius: 10%;
+} */
+
+
+/* .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.dark-mode .container {
+    background: #333;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#planet-list {
+    list-style: none;
+    padding: 0;
+}
+
+#planet-list li {
+    background: #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.dark-mode #planet-list li {
+    background: #555;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+} */
