@@ -1,13 +1,12 @@
-
 let planets = [
-    { name: "Меркурий", size: 4879, distance: 57.9, img: "../images/Merkuriy.jpg" },
-    { name: "Венера", size: 12104, distance: 108.2, img: "../images/Venera.jpg" },
-    { name: "Земля", size: 12742, distance: 149.6, img: "../images/Zemlya.jpg" },
-    { name: "Марс", size: 6779, distance: 227.9, img: "../images/Mars.jpg" },
-    { name: "Юпитер", size: 139820, distance: 778.3, img: "../images/Yupiter.jpg" },
-    { name: "Сатурн", size: 116460, distance: 1427, img: "../images/saturn.jpg" },
-    { name: "Уран", size: 50724, distance: 2871, img: "../images/Uran.png" },
-    { name: "Нептун", size: 49244, distance: 4495, img: "../images/Neptun.jpg" }
+    { name: "Меркурий", size: 4879, distance: 57.9, img: "images/Merkuriy.jpg" },
+    { name: "Венера", size: 12104, distance: 108.2, img: "images/Venera.jpg" },
+    { name: "Земля", size: 12742, distance: 149.6, img: "images/Zemlya.jpg" },
+    { name: "Марс", size: 6779, distance: 227.9, img: "images/Mars.jpg" },
+    { name: "Юпитер", size: 139820, distance: 778.3, img: "images/Yupiter.jpg" },
+    { name: "Сатурн", size: 116460, distance: 1427, img: "images/saturn.jpg" },
+    { name: "Уран", size: 50724, distance: 2871, img: "images/Uran.png" },
+    { name: "Нептун", size: 49244, distance: 4495, img: "images/Neptun.jpg" }
 ];
 
 const quotes = [
@@ -18,98 +17,84 @@ const quotes = [
     "Земля — это лишь песчинка во Вселенной."
 ];
 
+let asc = true;
 
+function renderPlanets(planetsToRender) {
+    const planetList = document.getElementById("planet-list");
+    planetList.innerHTML = "";
+    planetsToRender.forEach((planet) => {
+        const div = document.createElement("div");
+        div.classList.add("card");
+        div.innerHTML = `<span>${planet.name} - ${planet.size} км</span><img class="planet-img" src=${planet.img} />`;
+        planetList.appendChild(div);
+    });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-    const planetList = document.getElementById("planet-list");
     const quoteText = document.getElementById("quote");
 
-    planetList.innerHTML = "";
-    planets.forEach((planet) => {
-        const div = document.createElement("div");
-        div.innerHTML = `<span>${planet.name} - ${planet.size} км</span><img class="planet-img" src=${planet.img} />`;
-        div.classList.add("card");
-        planetList.appendChild(div);
-    })
-
-
+    renderPlanets(planets);
 
     document.getElementById("random-quote").addEventListener("click", () => {
         const randomIndex = Math.floor(Math.random() * quotes.length);
         quoteText.textContent = quotes[randomIndex];
-        quoteText.style.opacity = "0";
-
-        setTimeout(() => {
-            quoteText.style.opacity = "1";
-        }, 100);
     });
 
     document.getElementById("theme-toggle").addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
     });
 
+    document.getElementById("filter-large").addEventListener("click", () => {
+        const bigPlanets = planets.filter(planet => planet.size > 10000);
 
-    // const planetList = document.getElementById("planet-list");
-    // const planetCount = document.getElementById("planet-count");
-    // const searchInput = document.getElementById("search-input");
+        renderPlanets(bigPlanets);
+    });
 
+    document.getElementById("reset-filter").addEventListener("click", () => {
+        renderPlanets(planets);
+    });
 
+    document.getElementById("add-planet").addEventListener("click", () => {
+        const name = prompt("Введите название планеты:");
+        const size = parseInt(prompt("Введите размер планеты (км):"));
+        const distance = parseFloat(prompt("Введите расстояние до Солнца (млн км):"));
 
-    // function renderPlanets(planetsToRender) {
-    //     planetList.innerHTML = "";
-    //     planetsToRender.forEach((planet, index) => {
-    //         const li = document.createElement("li");
-    //         li.textContent = `${planet.name} - ${planet.size} км`;
-    //         planetList.appendChild(li);
+        if (!name || !size || !distance) {
+            alert("Введите корректные данные");
+            return;
+        }
 
-    //         setTimeout(() => {
-    //             li.classList.add("visible");
-    //         }, index * 100);
-    //     });
+        planets.push({ name, size, distance, img: "../images/Venera.jpg" });
+        renderPlanets(planets);
+    });
 
-    //     planetCount.textContent = `Всего планет: ${planetsToRender.reduce(acc => acc + 1, 0)}`;
-    // }
+    document.getElementById("show-nearest").addEventListener("click", () => {
+        const sorted = planets.sort((a, b) => a.distance - b.distance);
+        const nearestPlanet = sorted[0];
+        renderPlanets([nearestPlanet]);
+    });
 
-    // document.getElementById("filter-large").addEventListener("click", () => {
-    //     const largePlanets = planets.filter(planet => planet.size > 10000);
-    //     renderPlanets(largePlanets);
-    // });
+    document.getElementById("search-button").addEventListener("click", () => {
+        const searchInput = document.getElementById("search-input");
+        const searchValue = searchInput.value.trim().toLowerCase();
+        const foundPlanet = planets.find(planet => planet.name.toLowerCase() === searchValue);
 
-    //     document.getElementById("search-button").addEventListener("click", () => {
-    //         const searchValue = searchInput.value.trim().toLowerCase();
-    //         const foundPlanet = planets.find(planet => planet.name.toLowerCase() === searchValue);
+        if (foundPlanet) {
+            renderPlanets([foundPlanet]);
+        } else {
+            const planetList = document.getElementById("planet-list");
+            planetList.innerHTML = '<div>Планета не найдена</div>';
+        }
+    });
 
-    //         if (foundPlanet) {
-    //             renderPlanets([foundPlanet]);
-    //         } else {
-    //             planetList.innerHTML = '<li>Планета не найдена</li>';
-    //         }
-    //     });
+    document.getElementById("sort-size").addEventListener("click", () => {
+        const sorted = asc
+            ? planets.sort((a, b) => a.size - b.size)
+            : planets.sort((a, b) => b.size - a.size);
 
-    //     document.getElementById("reset-filter").addEventListener("click", () => {
-    //         renderPlanets(planets);
-    //     });
+        renderPlanets(sorted);
 
-    //     document.getElementById("add-planet").addEventListener("click", () => {
-    //         const name = prompt("Введите название планеты:");
-    //         const size = parseInt(prompt("Введите размер планеты (км):"));
-    //         const distance = parseFloat(prompt("Введите расстояние до Солнца (млн км):"));
+        asc = !asc;
+    });
 
-    //         if (name && !isNaN(size) && !isNaN(distance)) {
-    //             planets.push({ name, size, distance });
-    //             renderPlanets(planets);
-    //         } else {
-    //             alert("Некорректные данные.");
-    //         }
-    //     });
-
-    //     document.getElementById("show-nearest").addEventListener("click", () => {
-    //         const nearestPlanet = planets.sort((a, b) => a.distance - b.distance)[0];
-    //         renderPlanets([nearestPlanet]);
-    //     });
-
-
-
-
-    //     renderPlanets(planets);
 });

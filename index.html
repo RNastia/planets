@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Планеты</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <img id="cosmos" src="../images/cosmos.jpg" alt="">
+    <img id="cosmos" src="images/cosmos.jpg" alt="" />
 
+    <h1>Список планет</h1>
     <div class="container">
-        <h1>Список планет</h1>
-
-            <button id="filter-large">Фильтр больших планет</button>
-            <input type="text" id="search-input" placeholder="Введите название планеты">
+        <div class="left">
+            <div class="left-top">
+                <button id="filter-large">Фильтр больших планет</button>
+                <button id="reset-filter">Сбросить фильтр</button>
+            </div>
+            <div class="left-bottom">
+                <button id="add-planet">Добавить новую планету</button>
+                <button id="show-nearest">Показать ближайшую планету</button>
+                <button id="sort-size">Сортировка по размеру</button>
+            </div>
+        </div>
+        <div class="right">
+            <input type="text" id="search-input" placeholder="Введите название планеты" />
             <button id="search-button">Поиск</button>
-            <button id="reset-filter">Сбросить фильтр</button>
-            <button id="add-planet">Добавить новую планету</button>
-            <button id="show-nearest">Показать ближайшую планету</button>
-            
+        </div>
+    </div>
 
     <header><button id="theme-toggle">Сменить тему</button></header>
-    <main><div id="planet-list"></div></main>
+
+    <main>
+        <div id="planet-list"></div>
+    </main>
+
     <footer>
         <p id="quote">Космос — это не предел.</p>
         <button id="random-quote">Случайная цитата</button>
     </footer>
-    
 
     <script src="script.js"></script>
 </body>
+
 </html>
